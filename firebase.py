@@ -13,5 +13,5 @@ def init_firebase():
 
 def updateData(data):
     db.reference()
-    ref = db.reference("/")
+    ref = db.reference("/raw")
     ref.update(data)
