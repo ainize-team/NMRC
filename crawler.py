@@ -6,8 +6,11 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
+from firebase import init_firebase, updateData
+
 base_url = 'https://movie.naver.com/movie/point/af/list.nhn?&page={}'
 
+init_firebase()
 
 def main():
     while True:
@@ -32,7 +35,9 @@ def main():
                         continue
                     with open(f'./jsons/{id}.json', 'w', encoding='utf-8') as f:
                         print(f'{id} has been successfully crawled.')
-                        json.dump({'document': document, 'score': int(score)}, f, ensure_ascii=False, indent=2)
+                        data = {'document': document, 'score': int(score)}
+                        updateData({ id: data })
+                        json.dump(data, f, ensure_ascii=False, indent=2)
                 # 1 ~ 10 초 사이 랜덤한 시간 만큼 멈춘다 -> 너무 빠르게 하면 block 가능성이 있습니다.
                 time.sleep(random.uniform(1.0, 10.0))
             else:
