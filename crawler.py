@@ -36,7 +36,7 @@ def main():
                     with open(f'./jsons/{id}.json', 'w', encoding='utf-8') as f:
                         print(f'{id} has been successfully crawled.')
                         data = {'document': document, 'score': int(score)}
-                        updateData({ id: data })
+                        updateData(id, data)
                         json.dump(data, f, ensure_ascii=False, indent=2)
                 # 1 ~ 10 초 사이 랜덤한 시간 만큼 멈춘다 -> 너무 빠르게 하면 block 가능성이 있습니다.
                 time.sleep(random.uniform(1.0, 10.0))

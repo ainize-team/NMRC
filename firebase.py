@@ -11,7 +11,7 @@ def init_firebase():
     print('Initialize firebase done.')
 
 
-def updateData(data):
+def updateData(id, data):
     db.reference()
-    ref = db.reference("/raw")
-    ref.update(data)
+    ref = db.reference(f'/raw/{id}')
+    ref.set(data)
