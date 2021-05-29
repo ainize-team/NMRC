@@ -1,4 +1,5 @@
 import json
+
 import firebase_admin
 from firebase_admin import credentials, db
 
@@ -11,7 +12,7 @@ def init_firebase():
     print('Initialize firebase done.')
 
 
-def updateData(id, data):
+def update_data(document_id, data):
     db.reference()
-    ref = db.reference(f'/raw/{id}')
+    ref = db.reference(f'/raw/{document_id}')
     ref.set(data)
