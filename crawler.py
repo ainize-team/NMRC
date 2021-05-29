@@ -37,11 +37,8 @@ def main():
                     if os.path.exists(f'./jsons/{document_id}.json'):
                         print(f'{document_id} is already crawled.')
                         continue
-                    with open(f'./jsons/{document_id}.json', 'w', encoding='utf-8') as f:
-                        print(f'{document_id} has been successfully crawled.')
-                        data = {'document': document, 'score': int(score)}
-                        update_data(document_id, data)
-                        json.dump(data, f, ensure_ascii=False, indent=2)
+                    data = {'document': document, 'score': int(score)}
+                    update_data(document_id, data)
                 # 1 ~ 10 초 사이 랜덤한 시간 만큼 멈춘다 -> 너무 빠르게 하면 block 가능성이 있습니다.
                 time.sleep(random.uniform(1.0, 10.0))
             else:
