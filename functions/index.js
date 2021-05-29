@@ -14,10 +14,10 @@ const PREPROCESS_ENDPOINT = 'https://master-korean-preprocessor-api-dleunji.endp
 //     return;
 //   });
 
-exports.preprocess = functions.database.ref('raw').onUpdate(async (change, context) => {
-  const value = change.after.val();
-  const key = Object.keys(value)[0];
-  const text = value[key].document;
+exports.preprocess = functions.database.ref('raw/{id}').onCreate(async (snapshot, context) => {
+  const value = snapshot.val();
+  const key = context.params.id;
+  const text = value.document;
   const response = await axios.post(
     PREPROCESS_ENDPOINT,
     {
@@ -32,5 +32,5 @@ exports.preprocess = functions.database.ref('raw').onUpdate(async (change, conte
     }
   );
   const data = response.data;
-  admin.database().ref('preprocessed').update({ [key]: data });
+  admin.database().ref(`preprocessed/${key}`).set(data);
 });
