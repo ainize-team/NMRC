@@ -21,6 +21,13 @@ python crawler.py
 
 
 ## We also have got functions
+### Pre-requisites
+To use this, needs to, first of all, **set up firebase projects** as well as needs to generate
+**firebase admin SDK** and download it. Then, download both the firebase admin SDK file(JSON) and a
+firebase config file. Lastly, save the file into ./keys and ./functions/keys respectively. You are
+up to start now!
+
+### In detail
 The functions is used for the preprocess pipeline, which is deployed on [Ainize API](https://ainize.ai/dleunji/korean_preprocessor_api?branch=master).
 You are also able to use this on the [web](https://master-korean-preprocessor-dleunji.endpoint.ainize.ai/).
 
@@ -30,6 +37,11 @@ recorded triggered by this firebase functions.
 cron(schedule) will be updated sooner.
 
 See ./functions/
+
+### Deploy functions
+```
+firebase deploy --only functions
+```
 
 ## LICENSE
 
