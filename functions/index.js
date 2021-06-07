@@ -27,8 +27,8 @@ exports.preprocess = functions.database.ref('raw/{id}').onCreate(async (snapshot
       "only_hangle": false,
       "only_hangle_number": false,
       "only_text": true,
-      "num_repeats1": 2,
-      "num_repeats2": 0
+      "num_repeats1": 0,
+      "num_repeats2": 2
     }
   );
   const data = response.data;
